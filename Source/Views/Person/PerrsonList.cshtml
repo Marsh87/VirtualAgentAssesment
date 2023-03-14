@@ -1,0 +1,44 @@
+﻿@model VirtualAgentAssessment.Models.PersonListViewModel
+
+@{
+    ViewBag.Title = "PerrsonList";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>PerrsonList</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Id Number</th>
+    </tr>
+
+    @foreach (var item in Model.Persons)
+    {
+        <
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_number)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+    }
+
+</table>

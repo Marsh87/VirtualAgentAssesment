@@ -1,0 +1,45 @@
+﻿@model IEnumerable<VirtualAgentAssessment.Models.AccountViewModel>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.person_code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.account_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.outstanding_balance)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.person_code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.account_number)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.outstanding_balance)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+        </td>
+    </tr>
+}
+
+</table>
