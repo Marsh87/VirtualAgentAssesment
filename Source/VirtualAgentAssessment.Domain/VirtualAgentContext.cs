@@ -12,7 +12,7 @@ namespace VirtualAgentAssessment.Domain
 {
     public class VirtualAgentContext : DbContext, IVirtualAgentContext
     {
-        public IDbSet<Person> Persons { get ; set; }
+        public IDbSet<Person> People { get ; set; }
         public IDbSet<Account> Accounts { get ; set ; }
         public IDbSet<Transaction> Transactions { get; set; }
 

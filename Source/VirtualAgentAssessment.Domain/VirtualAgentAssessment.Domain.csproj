@@ -52,6 +52,7 @@
     <Compile Include="IVirtualAgentContext.cs" />
     <Compile Include="Models\Account.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\SearchType.cs" />
     <Compile Include="Models\Transaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VirtualAgentContext.cs" />

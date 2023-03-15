@@ -10,7 +10,7 @@ namespace VirtualAgentAssessment.Domain
 {
     public interface IVirtualAgentContext: IDisposable
     {
-        IDbSet<Person> Persons { get; set; }
+        IDbSet<Person> People { get; set; }
         IDbSet<Account> Accounts { get; set; }
         IDbSet<Transaction> Transactions { get; set; }
         int SaveChanges();

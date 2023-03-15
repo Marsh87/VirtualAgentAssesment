@@ -64,6 +64,12 @@
     <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>packages\Newtonsoft.Json.13.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="SimpleInjector, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
       <HintPath>packages\SimpleInjector.5.0.0\lib\net461\SimpleInjector.dll</HintPath>
     </Reference>
@@ -145,7 +151,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\SimpleInjectorBoostrapper.cs" />
+    <Compile Include="App_Start\SimpleInjectorBootrapper.cs" />
+    <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapper\AutoMapperProfile.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
@@ -176,6 +184,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -212,13 +221,13 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Person\CreatePerson.cshtml" />
     <Content Include="Views\Person\EditPerson.cshtml" />
-    <Content Include="Views\Person\PerrsonList.cshtml" />
     <Content Include="Views\Account\Index.cshtml" />
     <Content Include="Views\Account\CreateAccount.cshtml" />
     <Content Include="Views\Account\EditAccount.cshtml" />
     <Content Include="Views\Transaction\TransactionList.cshtml" />
     <Content Include="Views\Transaction\CreateTransaction.cshtml" />
     <Content Include="Views\Transaction\EditTransaction.cshtml" />
+    <Content Include="Views\Person\PersonList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,6 +264,14 @@
     <ProjectReference Include="VirtualAgentAssessment.Domain\VirtualAgentAssessment.Domain.csproj">
       <Project>{E4E97E50-BFC0-443E-8755-E74501308347}</Project>
       <Name>VirtualAgentAssessment.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="VirtualAgentAssessment.Logic\VirtualAgentAssessment.Logic.csproj">
+      <Project>{5ff8454e-fa3d-4bb6-a09c-358806afac9f}</Project>
+      <Name>VirtualAgentAssessment.Logic</Name>
+    </ProjectReference>
+    <ProjectReference Include="VirtualAgentAssessment.Repositories\VirtualAgentAssessment.Repositories.csproj">
+      <Project>{655d1080-d0d9-4ee8-b1ba-edd5b9806272}</Project>
+      <Name>VirtualAgentAssessment.Repositories</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

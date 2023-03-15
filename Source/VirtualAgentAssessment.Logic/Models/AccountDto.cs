@@ -9,8 +9,9 @@ namespace VirtualAgentAssessment.Domain.Models
     public class AccountDto
     {
         public int code {  get; set; }  
-        public string person_code { get; set; }
+        public int person_code { get; set; }
         public string account_number { get; set; }
         public decimal outstanding_balance { get; set;}
+        public  bool IsActive { get; set; }
     }
 }
