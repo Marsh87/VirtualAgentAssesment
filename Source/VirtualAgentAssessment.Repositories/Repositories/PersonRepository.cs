@@ -37,5 +37,16 @@ namespace VirtualAgentAssessment.Repositories.Repositories
         {
             return _virtualAgentContext.People.Where(p => p.surname.Contains(searchTerm)).ToList();
         }
+
+        public Person GetPersonWithIdNumber(string idNumber)
+        {
+            return _virtualAgentContext.People.FirstOrDefault(x => x.id_number == idNumber);
+        }
+
+        public void SavePerson(Person person)
+        {
+            _virtualAgentContext.People.Add(person);
+            _virtualAgentContext.SaveChanges();
+        }
     }
 }

@@ -10,5 +10,6 @@ namespace VirtualAgentAssessment.Logic.Interfaces
     public interface IPersonService
     {
         List<PersonDto> GetPersonDtos(string searchType, string searchTerm);
+        void SavePerson(PersonDto personDto);
     }
 }

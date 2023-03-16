@@ -40,5 +40,11 @@ namespace VirtualAgentAssessment.Logic.Services
             }
             return _mapper.Map<List<Person>, List<PersonDto>>(persons);
         }
+
+        public void SavePerson(PersonDto personDto)
+        {
+            var person = _mapper.Map<PersonDto, Person>(personDto);
+            _personRepository.SavePerson(person);
+        }
     }
 }

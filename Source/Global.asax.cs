@@ -18,7 +18,7 @@ namespace VirtualAgentAssessment
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            SimpleInjectorBootrapper.Boot();
+            SimpleInjectorBootstrapper.Boot();
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
+using FluentValidation;
 using PagedList;
 using VirtualAgentAssessment.Domain.Models;
 using VirtualAgentAssessment.Logic.Interfaces;
@@ -15,11 +16,17 @@ namespace VirtualAgentAssessment.Controllers
     {
         private IPersonService _personService;
         private IMapper _mapper;
+        private IValidator<PersonViewModel> _createPersonValidator;
 
-        public PersonController(IPersonService personService, IMapper mapper)
+        public PersonController(
+            IPersonService personService, 
+            IMapper mapper, 
+            IValidator<PersonViewModel> createPersonValidator
+            )
         {
             _personService = personService;
             _mapper = mapper;
+            _createPersonValidator = createPersonValidator;
         }
 
         // GET: Person
@@ -55,13 +62,26 @@ namespace VirtualAgentAssessment.Controllers
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var validationResult = _createPersonValidator.Validate(model);
+                    if (validationResult.IsValid)
+                    {
+                        var personDto = _mapper.Map<PersonViewModel, PersonDto>(model);
+                        _personService.SavePerson(personDto);
+                        return RedirectToAction("Index");   
+                    }
+                    ModelState.Clear();
+                    foreach (var validationFailure in validationResult.Errors)
+                    {
+                        ModelState.AddModelError(validationFailure.PropertyName,validationFailure.ErrorMessage);
+                    }
+                }
+                return View("CreatePerson",model);
             }
             catch
             {
-                return View("CreatePerson",model);
+                return View("Error");
             }
         }
 

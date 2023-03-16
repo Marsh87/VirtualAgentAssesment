@@ -12,8 +12,8 @@ namespace VirtualAgentAssessment.AutoMapper
     {
         public AutoMapperProfile() 
         {
-            CreateMap<Person, PersonDto>();
-            CreateMap<PersonDto, PersonViewModel>();
+            CreateMap<Person, PersonDto>().ReverseMap();
+            CreateMap<PersonDto, PersonViewModel>().ReverseMap();
         }
     }
 }
