@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
@@ -14,7 +15,11 @@ namespace VirtualAgentAssessment.Models
         }
         public int code { get; set; }
         public int person_code { get; set; }
+        [DisplayName("Account Number")]
+        [Required]
         public string account_number { get; set; }
+        [DisplayName("Outstanding Balance")]
+        [Required]
         public decimal outstanding_balance { get; set; }
         public bool IsActive { get; set; }
         

@@ -89,13 +89,14 @@ namespace VirtualAgentAssessment.Controllers
         // GET: Person/Edit/5
         public ActionResult Edit(int code)
         {
-            var model = new PersonViewModel();
+            var person = _personService.GetPersonDto(code);
+            var model = _mapper.Map<PersonDto, DeletePersonViewModel>(person);
             return View("EditPerson",model);
         }
 
         // POST: Person/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(PersonViewModel model)
         {
             try
             {

@@ -1,16 +1,10 @@
 ﻿@model IEnumerable<VirtualAgentAssessment.Models.AccountViewModel>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Account", "Create")
 </p>
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.code)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.person_code)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.account_number)
         </th>
@@ -23,22 +17,23 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.person_code)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.account_number)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.outstanding_balance)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            @Html.ActionLink("Edit", "Edit", new { id=item.code }) |
+            @if (item.IsActive)
+            {
+                @Html.ActionLink("Close Account", "Delete", new {  id=item.code })
+            }
+            else
+            {
+                @Html.ActionLink("Re Open Account", "Delete", new {  id=item.code })
+            }
+           
         </td>
     </tr>
 }
-
 </table>

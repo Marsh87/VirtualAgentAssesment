@@ -226,7 +226,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Person\CreatePerson.cshtml" />
     <Content Include="Views\Person\EditPerson.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\AccountList.cshtml" />
     <Content Include="Views\Account\CreateAccount.cshtml" />
     <Content Include="Views\Account\EditAccount.cshtml" />
     <Content Include="Views\Transaction\TransactionList.cshtml" />
