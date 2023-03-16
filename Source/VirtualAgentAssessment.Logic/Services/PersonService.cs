@@ -27,13 +27,13 @@ namespace VirtualAgentAssessment.Logic.Services
             switch (searchType)
             {
                 case "Id Number":
-                    persons = _personRepository.GetAllPeopleWithIdNumber(searchTerm);
+                    persons = _personRepository.GetAllPeopleWithIdNumber(searchTerm).ToList();
                     break;
                 case "Account Number":
-                    persons = _personRepository.GetAllPeopleWithAccountNumber(searchTerm);
+                    persons = _personRepository.GetAllPeopleWithAccountNumber(searchTerm).ToList();
                     break;
                 case "Surname":
-                   persons = _personRepository.GetAllPeopleWithSurname(searchTerm);
+                   persons = _personRepository.GetAllPeopleWithSurname(searchTerm).ToList();
                     break;
                 default:
                     persons = _personRepository.GetAllPeople().ToList();
@@ -57,6 +57,12 @@ namespace VirtualAgentAssessment.Logic.Services
         public void DeletePerson(int code)
         {
             _personRepository.DeletePerson(code);
+        }
+
+        public void EditPerson(PersonDto personDto)
+        {
+            var person = _mapper.Map<PersonDto, Person>(personDto);
+            _personRepository.EditPerson(person);
         }
     }
 }

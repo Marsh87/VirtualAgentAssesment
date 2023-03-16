@@ -18,16 +18,22 @@ namespace VirtualAgentAssessment.Controllers
         private IPersonService _personService;
         private IMapper _mapper;
         private IValidator<PersonViewModel> _createPersonValidator;
+        private IValidator<EditPersonViewModel> _editPersonValidator;
+        private IAccountService _accountService;
 
         public PersonController(
             IPersonService personService, 
             IMapper mapper, 
-            IValidator<PersonViewModel> createPersonValidator
+            IValidator<PersonViewModel> createPersonValidator, 
+            IAccountService accountService, 
+            IValidator<EditPersonViewModel> editPersonValidator
             )
         {
             _personService = personService;
             _mapper = mapper;
             _createPersonValidator = createPersonValidator;
+            _accountService = accountService;
+            _editPersonValidator = editPersonValidator;
         }
 
         // GET: Person
@@ -90,23 +96,39 @@ namespace VirtualAgentAssessment.Controllers
         public ActionResult Edit(int code)
         {
             var person = _personService.GetPersonDto(code);
-            var model = _mapper.Map<PersonDto, DeletePersonViewModel>(person);
+            var model = _mapper.Map<PersonDto, EditPersonViewModel>(person);
             return View("EditPerson",model);
         }
 
         // POST: Person/Edit/5
         [HttpPost]
-        public ActionResult Edit(PersonViewModel model)
+        public ActionResult Edit(EditPersonViewModel model)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                var accounts = _accountService.GetAccountsFromPersonCode(model.code);
+                var accountViewModel = _mapper.Map<List<AccountDto>, List<AccountViewModel>>(accounts);
+                model.Accounts = accountViewModel;
+                if (ModelState.IsValid)
+                {
+                    var validationResult = _editPersonValidator.Validate(model);
+                    if (validationResult.IsValid)
+                    {
+                        var personDto = _mapper.Map<EditPersonViewModel, PersonDto>(model);
+                        _personService.EditPerson(personDto);
+                        return RedirectToAction("Index");   
+                    }
+                    ModelState.Clear();
+                    foreach (var validationFailure in validationResult.Errors)
+                    {
+                        ModelState.AddModelError(String.Empty,validationFailure.ErrorMessage);
+                    }
+                }
+                return View("EditPerson",model);
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 

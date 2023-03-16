@@ -4,11 +4,11 @@ using VirtualAgentAssessment.Repositories.Interfaces;
 
 namespace VirtualAgentAssessment.Validators
 {
-    public class CreatePersonValidator:AbstractValidator<PersonViewModel>
+    public class EditPersonValidator:AbstractValidator<EditPersonViewModel>
     {
         private IPersonRepository _personRepository;
 
-        public CreatePersonValidator(IPersonRepository personRepository)
+        public EditPersonValidator(IPersonRepository personRepository)
         {
             _personRepository = personRepository;
             _setUpRules();
@@ -18,15 +18,19 @@ namespace VirtualAgentAssessment.Validators
         {
             RuleFor(model => model.id_number)
                 .Must(IsIdNumberNotInUse)
-                .WithMessage("Person with same IdNumber already exists");
+                .WithMessage("Person with same Id Number already exists");
         }
 
         private bool IsIdNumberNotInUse(PersonViewModel model, string idNumber)
         {
-            var person = _personRepository.GetPersonWithIdNumber(model.id_number);
-            if (person != null)
+            var originalPerson = _personRepository.GetPersonWithCode(model.code);
+            if (originalPerson.id_number != model.id_number)
             {
-                return false;
+                var person = _personRepository.GetPersonWithIdNumber(model.id_number);
+                if (person != null)
+                {
+                    return false;
+                }
             }
             return true;
         }

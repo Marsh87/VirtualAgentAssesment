@@ -18,3 +18,8 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.image-dimensions{
+    width: 5px;
+    height:5px;
+}

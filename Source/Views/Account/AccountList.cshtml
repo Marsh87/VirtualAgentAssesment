@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<VirtualAgentAssessment.Models.AccountViewModel>
 
 <p>
-    @Html.ActionLink("Create New Account", "Create")
+    @Html.ActionLink("Create New Account", "Create","Account",new { personCode = Model.FirstOrDefault().person_code },null)
 </p>
 <table class="table">
     <tr>

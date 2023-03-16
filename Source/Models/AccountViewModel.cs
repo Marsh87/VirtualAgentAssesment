@@ -19,7 +19,6 @@ namespace VirtualAgentAssessment.Models
         [Required]
         public string account_number { get; set; }
         [DisplayName("Outstanding Balance")]
-        [Required]
         public decimal outstanding_balance { get; set; }
         public bool IsActive { get; set; }
         

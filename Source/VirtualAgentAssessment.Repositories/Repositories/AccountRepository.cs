@@ -16,7 +16,7 @@ namespace VirtualAgentAssessment.Repositories.Repositories
         }
         public IEnumerable<Account> GetAccountsForPerson(int personCode)
         {
-            return _virtualAgentContext.Accounts.Where(x => x.person_code == personCode);
+            return _virtualAgentContext.Accounts.Where(x => x.person_code == personCode).ToList();
         }
     }
 }

@@ -14,5 +14,6 @@ namespace VirtualAgentAssessment.Logic.Interfaces
         void SavePerson(PersonDto personDto);
         PersonDto GetPersonDto(int code);
         void DeletePerson(int code);
+        void EditPerson(PersonDto personDto);
     }
 }

@@ -30,7 +30,10 @@ namespace VirtualAgentAssessment
             container.Register<IVirtualAgentContext, VirtualAgentContext>(Lifestyle.Scoped);
             container.Register<IPersonService,PersonService>();
             container.Register<IPersonRepository,PersonRepository>();
+            container.Register<IAccountRepository,AccountRepository>();
+            container.Register<IAccountService,AccountService>();
             container.Register<IValidator<PersonViewModel>,CreatePersonValidator>();
+            container.Register<IValidator<EditPersonViewModel>,EditPersonValidator>();
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
             container.RegisterMvcIntegratedFilterProvider();
             container.Verify();

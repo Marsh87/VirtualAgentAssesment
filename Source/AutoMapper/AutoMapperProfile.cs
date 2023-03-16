@@ -16,6 +16,7 @@ namespace VirtualAgentAssessment.AutoMapper
             CreateMap<Person, PersonDto>().ReverseMap();
             CreateMap<PersonDto, PersonViewModel>().ReverseMap();
             CreateMap<PersonDto, DeletePersonViewModel>().ReverseMap();
+            CreateMap<PersonDto, EditPersonViewModel>().ReverseMap();
             CreateMap<Account, AccountDto>().ReverseMap();
             CreateMap<AccountDto, AccountViewModel>().ReverseMap();
             CreateMap<Transaction, TransactionDto>().ReverseMap();

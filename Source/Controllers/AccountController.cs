@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VirtualAgentAssessment.Models;
 
 namespace VirtualAgentAssessment.Controllers
 {
@@ -16,9 +17,11 @@ namespace VirtualAgentAssessment.Controllers
 
      
         // GET: Account/Create
-        public ActionResult Create()
+        public ActionResult Create(int personCode)
         {
-            return View();
+            var accountViewModel = new  AccountViewModel();
+            accountViewModel.person_code = personCode;
+            return View("CreateAccount",accountViewModel);
         }
 
         // POST: Account/Create

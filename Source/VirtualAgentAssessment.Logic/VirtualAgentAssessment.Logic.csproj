@@ -43,11 +43,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IPersonService.cs" />
     <Compile Include="Models\AccountDto.cs" />
     <Compile Include="Models\PersonDto.cs" />
     <Compile Include="Models\TransactionDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\PersonService.cs" />
   </ItemGroup>
   <ItemGroup>
