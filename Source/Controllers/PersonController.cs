@@ -8,6 +8,7 @@ using FluentValidation;
 using PagedList;
 using VirtualAgentAssessment.Domain.Models;
 using VirtualAgentAssessment.Logic.Interfaces;
+using VirtualAgentAssessment.Logic.Models;
 using VirtualAgentAssessment.Models;
 
 namespace VirtualAgentAssessment.Controllers
@@ -86,7 +87,7 @@ namespace VirtualAgentAssessment.Controllers
         }
 
         // GET: Person/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int code)
         {
             var model = new PersonViewModel();
             return View("EditPerson",model);
@@ -109,24 +110,37 @@ namespace VirtualAgentAssessment.Controllers
         }
 
         // GET: Person/Delete/5
-        public ActionResult Delete(int id)
+        public ActionResult Delete(int code)
         {
-            return View();
+            var person = _personService.GetPersonDto(code);
+            var model = _mapper.Map<PersonDto, DeletePersonViewModel>(person);
+            return View("DeletePerson",model);
         }
 
         // POST: Person/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int code)
         {
             try
             {
-                // TODO: Add delete logic here
+                var person = _personService.GetPersonDto(code);
+                var model = _mapper.Map<PersonDto, DeletePersonViewModel>(person);
+                if (person.Accounts.Any(x => x.IsActive))
+                {
+                    ModelState.AddModelError(String.Empty, "Person still has an Account that is active");   
+                }
 
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    _personService.DeletePerson(person.code);
+                    return RedirectToAction("Index");
+                }
+                return View("DeletePerson", model);
             }
             catch
             {
-                return View();
+                return View("Error");
             }
         }
 

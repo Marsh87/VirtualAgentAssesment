@@ -15,5 +15,7 @@ namespace VirtualAgentAssessment.Repositories.Interfaces
         List<Person> GetAllPeopleWithSurname(string searchTerm);
         Person GetPersonWithIdNumber(string idNumber);
         void SavePerson(Person person);
+        Person GetPersonWithCode(int code);
+        void DeletePerson(int code);
     }
 }

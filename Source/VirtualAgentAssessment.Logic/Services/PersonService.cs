@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using VirtualAgentAssessment.Domain.Models;
 using VirtualAgentAssessment.Logic.Interfaces;
+using VirtualAgentAssessment.Logic.Models;
 using VirtualAgentAssessment.Repositories.Interfaces;
 
 namespace VirtualAgentAssessment.Logic.Services
@@ -45,6 +46,17 @@ namespace VirtualAgentAssessment.Logic.Services
         {
             var person = _mapper.Map<PersonDto, Person>(personDto);
             _personRepository.SavePerson(person);
+        }
+
+        public PersonDto GetPersonDto(int code)
+        {
+            var person = _personRepository.GetPersonWithCode(code);
+            return _mapper.Map<Person, PersonDto>(person);
+        }
+
+        public void DeletePerson(int code)
+        {
+            _personRepository.DeletePerson(code);
         }
     }
 }

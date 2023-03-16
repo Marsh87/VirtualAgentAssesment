@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,6 +47,21 @@ namespace VirtualAgentAssessment.Repositories.Repositories
         public void SavePerson(Person person)
         {
             _virtualAgentContext.People.Add(person);
+            _virtualAgentContext.SaveChanges();
+        }
+
+        public Person GetPersonWithCode(int code)
+        {
+            return _virtualAgentContext.People
+                .Where(x => x.code == code)
+                .Include(x=>x.Accounts)
+                .FirstOrDefault();
+        }
+
+        public void DeletePerson(int code)
+        {
+            var person = _virtualAgentContext.People.FirstOrDefault(x => x.code == code);
+            _virtualAgentContext.People.Remove(person);
             _virtualAgentContext.SaveChanges();
         }
     }
