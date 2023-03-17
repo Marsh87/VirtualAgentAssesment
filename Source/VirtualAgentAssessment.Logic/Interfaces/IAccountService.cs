@@ -9,5 +9,6 @@ namespace VirtualAgentAssessment.Logic.Interfaces
         void SaveAccount(AccountDto accountDto);
         AccountDto GetAccountFromCode(int code);
         void SetAccountStatus(int code, bool status);
+        void UpdateAccountNumber(int code, string accountNumber);
     }
 }

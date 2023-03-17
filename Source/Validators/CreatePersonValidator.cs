@@ -18,7 +18,7 @@ namespace VirtualAgentAssessment.Validators
         {
             RuleFor(model => model.id_number)
                 .Must(IsIdNumberNotInUse)
-                .WithMessage("Person with same IdNumber already exists");
+                .WithMessage("Person with the same Id Number already exists");
         }
 
         private bool IsIdNumberNotInUse(PersonViewModel model, string idNumber)

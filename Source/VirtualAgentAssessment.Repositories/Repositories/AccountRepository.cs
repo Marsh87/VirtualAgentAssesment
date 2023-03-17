@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using VirtualAgentAssessment.Domain;
 using VirtualAgentAssessment.Domain.Models;
@@ -32,13 +33,23 @@ namespace VirtualAgentAssessment.Repositories.Repositories
 
         public Account GetAccountFromCode(int code)
         {
-            return _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
+            return _virtualAgentContext.Accounts
+                .Where(x => x.code == code)
+                .Include(x=>x.Transactions)
+                .FirstOrDefault();;
         }
 
         public void SetAccountStatus(int code, bool status)
         {
             var account = _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
             if (account != null) account.IsActive = status;
+            _virtualAgentContext.SaveChanges();
+        }
+
+        public void UpdateAccountNumber(int code, string accountNumber)
+        {
+            var account = _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
+            if (account != null) account.account_number = accountNumber;
             _virtualAgentContext.SaveChanges();
         }
     }

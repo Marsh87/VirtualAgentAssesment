@@ -1,14 +1,7 @@
 ﻿@model IEnumerable<VirtualAgentAssessment.Models.TransactionViewModel>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-
 <table class="table">
     <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.code)
-        </th>
         <th>
             @Html.DisplayNameFor(model => model.transaction_date)
         </th>
@@ -27,9 +20,6 @@
 @foreach (var item in Model) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.code)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.transaction_date)
         </td>
         <td>
@@ -42,7 +32,7 @@
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+            @Html.ActionLink("Edit", "Edit","Transaction" ,new {  code = item.code }, null)
         </td>
     </tr>
 }

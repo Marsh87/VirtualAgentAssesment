@@ -43,5 +43,10 @@ namespace VirtualAgentAssessment.Logic.Services
         {
             _accountRepository.SetAccountStatus(code, status);
         }
+
+        public void UpdateAccountNumber(int code, string accountNumber)
+        {
+            _accountRepository.UpdateAccountNumber(code, accountNumber);
+        }
     }
 }

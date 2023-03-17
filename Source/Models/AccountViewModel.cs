@@ -13,10 +13,12 @@ namespace VirtualAgentAssessment.Models
         {
             Transactions = new List<TransactionViewModel>();
         }
+        [Required]
         public int code { get; set; }
         public int person_code { get; set; }
         [DisplayName("Account Number")]
         [Required]
+        [MaxLength(50)]
         public string account_number { get; set; }
         [DisplayName("Outstanding Balance")]
         public decimal outstanding_balance { get; set; }

@@ -103,9 +103,7 @@ namespace VirtualAgentAssessment.Controllers
         {
             try
             {
-                var accounts = _accountService.GetAccountsFromPersonCode(model.code);
-                var accountViewModel = _mapper.Map<List<AccountDto>, List<AccountViewModel>>(accounts);
-                model.Accounts = accountViewModel;
+                model.Accounts =GetAccounts(model);
                 if (ModelState.IsValid)
                 {
                     var validationResult = _editPersonValidator.Validate(model);
@@ -124,7 +122,7 @@ namespace VirtualAgentAssessment.Controllers
                 return View("Error");
             }
         }
-
+        
         // GET: Person/Delete/5
         public ActionResult Delete(int code)
         {
@@ -169,6 +167,13 @@ namespace VirtualAgentAssessment.Controllers
                 new SelectListItem() { Text = "Account Number", Value = "Account Number" },
                 new SelectListItem() { Text = "Surname", Value = "Surname" }
             };
+        }
+        
+        private List<AccountViewModel> GetAccounts(EditPersonViewModel model)
+        {
+            var accounts = _accountService.GetAccountsFromPersonCode(model.code);
+            var accountViewModel = _mapper.Map<List<AccountDto>, List<AccountViewModel>>(accounts);
+            return accountViewModel;
         }
         
         private void SetFailuresOnModelState(ValidationResult validationResult)

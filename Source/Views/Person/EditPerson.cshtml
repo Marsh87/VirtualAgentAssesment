@@ -36,17 +36,17 @@
                 @Html.ValidationMessageFor(model => model.id_number, "", new { @class = "text-danger" })
             </div>
         </div>
-
+ <br/>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 <br/>
 <p>
-    @Html.ActionLink("Create New Account", "Create","Account",new { personCode = Model.code },null)
+    @Html.ActionLink("Add New Account", "Create","Account",new { personCode = Model.code },null)
 </p>
 @{
     Html.RenderPartial("~/Views/Account/AccountList.cshtml",Model.Accounts);

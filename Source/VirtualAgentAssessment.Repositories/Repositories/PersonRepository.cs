@@ -30,7 +30,7 @@ namespace VirtualAgentAssessment.Repositories.Repositories
 
         public IEnumerable<Person> GetAllPeopleWithAccountNumber(string searchTerm)
         {
-            return _virtualAgentContext.People.Where(p => p.Accounts.Any(c => c.account_number.Contains(searchTerm) && c.IsActive))
+            return _virtualAgentContext.People.Where(p => p.Accounts.Any(c => c.account_number.Contains(searchTerm)))
                 .ToList();
         }
 

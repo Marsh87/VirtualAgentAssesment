@@ -13,6 +13,7 @@ namespace VirtualAgentAssessment.Models
         {
             Accounts = new List<AccountViewModel>();
         }
+        [Required]
         public int code { get; set; }
         [Required]
         [MaxLength(50)]

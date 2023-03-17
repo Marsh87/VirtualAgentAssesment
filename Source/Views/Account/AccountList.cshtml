@@ -20,14 +20,14 @@
             @Html.DisplayFor(modelItem => item.outstanding_balance)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.code }) |
+            @Html.ActionLink("Edit", "Edit", "Account",new { code =item.code },null) |
             @if (item.IsActive)
             {
                 @Html.ActionLink("Close Account", "CloseAccount","Account", new {  code = item.code },null)
             }
             else
             {
-                @Html.ActionLink("Re Open Account", "Delete", new {  id=item.code })
+                @Html.ActionLink("Re Open Account", "ReOpenAccount","Account", new { code =item.code },null)
             }
            
         </td>

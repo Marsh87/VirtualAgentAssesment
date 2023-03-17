@@ -19,18 +19,21 @@ namespace VirtualAgentAssessment.Controllers
         private readonly IMapper _mapper;
         private readonly IValidator<AccountViewModel> _createAccountValidator;
         private readonly IValidator<CloseAccountViewModel> _closeAccountValidator;
+        private readonly IValidator<EditAccountViewModel> _editAccountValidator;
 
         public AccountController(
             IAccountService accountService,
             IMapper mapper,
-            IValidator<AccountViewModel> createAccountValidator, 
-            IValidator<CloseAccountViewModel> closeAccountValidator
-            )
+            IValidator<AccountViewModel> createAccountValidator,
+            IValidator<CloseAccountViewModel> closeAccountValidator,
+            IValidator<EditAccountViewModel> editAccountValidator
+        )
         {
             _accountService = accountService;
             _mapper = mapper;
             _createAccountValidator = createAccountValidator;
             _closeAccountValidator = closeAccountValidator;
+            _editAccountValidator = editAccountValidator;
         }
 
         public ActionResult Index()
@@ -75,15 +78,15 @@ namespace VirtualAgentAssessment.Controllers
             }
         }
 
-        // GET: Account/Edit/5
+        // GET: CloseAccount/Edit/5
         public ActionResult CloseAccount(int code)
         {
             var account = _accountService.GetAccountFromCode(code);
-            var model = _mapper.Map<AccountDto,CloseAccountViewModel>(account);
-            return View("CloseAccount",model);
+            var model = _mapper.Map<AccountDto, CloseAccountViewModel>(account);
+            return View("CloseAccount", model);
         }
 
-        // POST: Account/Edit/5
+        // POST: CloseAccount/Edit/5
         [HttpPost]
         public ActionResult CloseAccount(CloseAccountViewModel closeAccountViewModel)
         {
@@ -97,9 +100,39 @@ namespace VirtualAgentAssessment.Controllers
                         _accountService.SetAccountStatus(closeAccountViewModel.code, false);
                         return RedirectToAction("Edit", "Person", new { code = closeAccountViewModel.person_code });
                     }
+
                     SetFailuresOnModelState(validationResult);
                 }
-                return View("CloseAccount",closeAccountViewModel);
+
+                return View("CloseAccount", closeAccountViewModel);
+            }
+            catch (Exception exception)
+            {
+                return View("Error");
+            }
+        }
+
+        // GET: CloseAccount/Edit/5
+        public ActionResult ReOpenAccount(int code)
+        {
+            var account = _accountService.GetAccountFromCode(code);
+            var model = _mapper.Map<AccountDto, AccountViewModel>(account);
+            return View("ReOpenAccount", model);
+        }
+
+        // POST: CloseAccount/Edit/5
+        [HttpPost]
+        public ActionResult ReOpenAccount(AccountViewModel accountViewModel)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    _accountService.SetAccountStatus(accountViewModel.code, true);
+                    return RedirectToAction("Edit", "Person", new { code = accountViewModel.person_code });
+                }
+
+                return View("ReOpenAccount", accountViewModel);
             }
             catch (Exception exception)
             {
@@ -108,27 +141,48 @@ namespace VirtualAgentAssessment.Controllers
         }
 
         // GET: Account/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int code)
         {
-            return View();
+            var account = _accountService.GetAccountFromCode(code);
+            var model = _mapper.Map<AccountDto, EditAccountViewModel>(account);
+            return View("EditAccount", model);
         }
 
         // POST: Account/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(EditAccountViewModel editAccountViewModel)
         {
             try
             {
-                // TODO: Add update logic here
+                if (ModelState.IsValid)
+                {
+                    var validationResult = _editAccountValidator.Validate(editAccountViewModel);
+                    if (validationResult.IsValid)
+                    {
+                        _accountService.UpdateAccountNumber(editAccountViewModel.code,
+                            editAccountViewModel.account_number);
+                        return RedirectToAction("Edit", "Person", new { code = editAccountViewModel.person_code });
+                    }
 
-                return RedirectToAction("Index");
+                    SetFailuresOnModelState(validationResult);
+                }
+
+                editAccountViewModel.Transactions = GetTransactions(editAccountViewModel);
+                return View("EditAccount", editAccountViewModel);
             }
-            catch
+            catch (Exception exception)
             {
-                return View();
+                return View("Error");
             }
         }
-        
+
+        private List<TransactionViewModel> GetTransactions(EditAccountViewModel editAccountViewModel)
+        {
+            var account = _accountService.GetAccountFromCode(editAccountViewModel.code);
+            var transactions = _mapper.Map<List<TransactionDto>, List<TransactionViewModel>>(account.Transactions);
+            return transactions;
+        }
+
         private void SetFailuresOnModelState(ValidationResult validationResult)
         {
             ModelState.Clear();

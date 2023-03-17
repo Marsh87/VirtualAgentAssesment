@@ -1,10 +1,10 @@
-﻿@model VirtualAgentAssessment.Models.CloseAccountViewModel
+﻿@model VirtualAgentAssessment.Models.AccountViewModel
 
 @{
-    ViewBag.Title = "Close Account";
+    ViewBag.Title = "Re Open Account";
 }
 
-<h3>Are you sure you want to close this Account?</h3>
+<h3>Are you sure you want to re-open this Account?</h3>
 <div>
     <hr/>
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -32,7 +32,7 @@
             @Html.HiddenFor(m => m.person_code)
             @Html.HiddenFor(m => m.outstanding_balance)
             @Html.HiddenFor(m => m.account_number)
-            <input type="submit" value="Close Account" class="btn btn-primary"/> 
+            <input type="submit" value="Re Open Account" class="btn btn-primary"/> 
         </div>
         <br/>
         @Html.ActionLink("Back to Person", "Edit","Person",new {code = Model.person_code},null)

@@ -10,5 +10,6 @@ namespace VirtualAgentAssessment.Repositories.Interfaces
         void SaveAccount(Account account);
         Account GetAccountFromCode(int code);
         void SetAccountStatus(int code, bool status);
+        void UpdateAccountNumber(int code, string accountNumber);
     }
 }
