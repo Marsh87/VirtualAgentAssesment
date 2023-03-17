@@ -6,5 +6,7 @@ namespace VirtualAgentAssessment.Repositories.Interfaces
     public interface IAccountRepository
     {
         IEnumerable<Account> GetAccountsForPerson(int personCode);
+        Account GetAccountForAccountNumber(string accountNumber);
+        void SaveAccount(Account account);
     }
 }

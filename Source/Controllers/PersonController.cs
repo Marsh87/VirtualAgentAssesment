@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using AutoMapper;
 using FluentValidation;
+using FluentValidation.Results;
 using PagedList;
 using VirtualAgentAssessment.Domain.Models;
 using VirtualAgentAssessment.Logic.Interfaces;
@@ -78,15 +79,11 @@ namespace VirtualAgentAssessment.Controllers
                         _personService.SavePerson(personDto);
                         return RedirectToAction("Index");   
                     }
-                    ModelState.Clear();
-                    foreach (var validationFailure in validationResult.Errors)
-                    {
-                        ModelState.AddModelError(validationFailure.PropertyName,validationFailure.ErrorMessage);
-                    }
+                    SetFailuresOnModelState(validationResult);
                 }
                 return View("CreatePerson",model);
             }
-            catch
+            catch(Exception exception)
             {
                 return View("Error");
             }
@@ -118,15 +115,11 @@ namespace VirtualAgentAssessment.Controllers
                         _personService.EditPerson(personDto);
                         return RedirectToAction("Index");   
                     }
-                    ModelState.Clear();
-                    foreach (var validationFailure in validationResult.Errors)
-                    {
-                        ModelState.AddModelError(String.Empty,validationFailure.ErrorMessage);
-                    }
+                    SetFailuresOnModelState(validationResult);
                 }
                 return View("EditPerson",model);
             }
-            catch
+            catch(Exception exception)
             {
                 return View("Error");
             }
@@ -161,7 +154,7 @@ namespace VirtualAgentAssessment.Controllers
                 }
                 return View("DeletePerson", model);
             }
-            catch
+            catch(Exception exception)
             {
                 return View("Error");
             }
@@ -176,6 +169,15 @@ namespace VirtualAgentAssessment.Controllers
                 new SelectListItem() { Text = "Account Number", Value = "Account Number" },
                 new SelectListItem() { Text = "Surname", Value = "Surname" }
             };
+        }
+        
+        private void SetFailuresOnModelState(ValidationResult validationResult)
+        {
+            ModelState.Clear();
+            foreach (var validationFailure in validationResult.Errors)
+            {
+                ModelState.AddModelError("", validationFailure.ErrorMessage);
+            }
         }
     }
 }

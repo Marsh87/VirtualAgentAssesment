@@ -18,5 +18,16 @@ namespace VirtualAgentAssessment.Repositories.Repositories
         {
             return _virtualAgentContext.Accounts.Where(x => x.person_code == personCode).ToList();
         }
+
+        public Account GetAccountForAccountNumber(string accountNumber)
+        {
+            return _virtualAgentContext.Accounts.FirstOrDefault(x => x.account_number == accountNumber);
+        }
+
+        public void SaveAccount(Account account)
+        {
+            _virtualAgentContext.Accounts.Add(account);
+            _virtualAgentContext.SaveChanges();
+        }
     }
 }
