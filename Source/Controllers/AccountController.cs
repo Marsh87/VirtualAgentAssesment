@@ -112,7 +112,7 @@ namespace VirtualAgentAssessment.Controllers
             }
         }
 
-        // GET: CloseAccount/Edit/5
+        // GET: ReOpenAccount/Edit/5
         public ActionResult ReOpenAccount(int code)
         {
             var account = _accountService.GetAccountFromCode(code);
@@ -120,7 +120,7 @@ namespace VirtualAgentAssessment.Controllers
             return View("ReOpenAccount", model);
         }
 
-        // POST: CloseAccount/Edit/5
+        // POST: ReOpenAccount/Edit/5
         [HttpPost]
         public ActionResult ReOpenAccount(AccountViewModel accountViewModel)
         {
