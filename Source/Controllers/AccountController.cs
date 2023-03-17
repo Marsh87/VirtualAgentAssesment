@@ -18,16 +18,19 @@ namespace VirtualAgentAssessment.Controllers
         private readonly IAccountService _accountService;
         private readonly IMapper _mapper;
         private readonly IValidator<AccountViewModel> _createAccountValidator;
+        private readonly IValidator<CloseAccountViewModel> _closeAccountValidator;
 
         public AccountController(
             IAccountService accountService,
             IMapper mapper,
-            IValidator<AccountViewModel> createAccountValidator
-        )
+            IValidator<AccountViewModel> createAccountValidator, 
+            IValidator<CloseAccountViewModel> closeAccountValidator
+            )
         {
             _accountService = accountService;
             _mapper = mapper;
             _createAccountValidator = createAccountValidator;
+            _closeAccountValidator = closeAccountValidator;
         }
 
         public ActionResult Index()
@@ -75,8 +78,9 @@ namespace VirtualAgentAssessment.Controllers
         // GET: Account/Edit/5
         public ActionResult CloseAccount(int code)
         {
-            var account = _accountService.GetAccountsFromCode(code);
-            return View();
+            var account = _accountService.GetAccountFromCode(code);
+            var model = _mapper.Map<AccountDto,CloseAccountViewModel>(account);
+            return View("CloseAccount",model);
         }
 
         // POST: Account/Edit/5
@@ -85,13 +89,21 @@ namespace VirtualAgentAssessment.Controllers
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    var validationResult = _closeAccountValidator.Validate(closeAccountViewModel);
+                    if (validationResult.IsValid)
+                    {
+                        _accountService.SetAccountStatus(closeAccountViewModel.code, false);
+                        return RedirectToAction("Edit", "Person", new { code = closeAccountViewModel.person_code });
+                    }
+                    SetFailuresOnModelState(validationResult);
+                }
+                return View("CloseAccount",closeAccountViewModel);
             }
-            catch
+            catch (Exception exception)
             {
-                return View();
+                return View("Error");
             }
         }
 
@@ -116,29 +128,7 @@ namespace VirtualAgentAssessment.Controllers
                 return View();
             }
         }
-
-        // GET: Account/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Account/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
+        
         private void SetFailuresOnModelState(ValidationResult validationResult)
         {
             ModelState.Clear();

@@ -33,10 +33,15 @@ namespace VirtualAgentAssessment.Logic.Services
             _accountRepository.SaveAccount(account);
         }
 
-        public AccountDto GetAccountsFromCode(int code)
+        public AccountDto GetAccountFromCode(int code)
         {
-            var account = _accountRepository.GetAccountForCode(code);
+            var account = _accountRepository.GetAccountFromCode(code);
             return _mapper.Map<Account, AccountDto>(account);
+        }
+
+        public void SetAccountStatus(int code, bool status)
+        {
+            _accountRepository.SetAccountStatus(code, status);
         }
     }
 }

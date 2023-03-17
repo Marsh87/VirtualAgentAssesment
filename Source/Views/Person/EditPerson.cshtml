@@ -44,7 +44,10 @@
         </div>
     </div>
 }
-
+<br/>
+<p>
+    @Html.ActionLink("Create New Account", "Create","Account",new { personCode = Model.code },null)
+</p>
 @{
     Html.RenderPartial("~/Views/Account/AccountList.cshtml",Model.Accounts);
 }

@@ -30,9 +30,16 @@ namespace VirtualAgentAssessment.Repositories.Repositories
             _virtualAgentContext.SaveChanges();
         }
 
-        public Account GetAccountForCode(int code)
+        public Account GetAccountFromCode(int code)
         {
             return _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
+        }
+
+        public void SetAccountStatus(int code, bool status)
+        {
+            var account = _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
+            if (account != null) account.IsActive = status;
+            _virtualAgentContext.SaveChanges();
         }
     }
 }

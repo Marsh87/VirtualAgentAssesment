@@ -17,7 +17,7 @@ namespace VirtualAgentAssessment.Validators
         public void _setUpRules()
         {
             RuleFor(model => model.outstanding_balance)
-                .NotEqual(0)
+                .Equal(0)
                 .WithMessage("Cannot Close an account with balance that is not zero");
         }
     }
