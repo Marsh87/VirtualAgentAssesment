@@ -166,11 +166,13 @@
     </Compile>
     <Compile Include="Helpers\CustomHtmlHelpers.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
+    <Compile Include="Models\CloseAccountViewModel.cs" />
     <Compile Include="Models\DeletePersonViewModel.cs" />
     <Compile Include="Models\EditPersonViewModel.cs" />
     <Compile Include="Models\PersonViewModel.cs" />
     <Compile Include="Models\TransactionViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Validators\CloseAccountValidator.cs" />
     <Compile Include="Validators\CreateAccountValidator.cs" />
     <Compile Include="Validators\CreatePersonValidator.cs" />
     <Compile Include="Validators\EditPersonValidator.cs" />
@@ -214,6 +216,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Views\Account\CloseAccount.cshtml" />
     <Content Include="Views\Person\DeletePerson.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

@@ -7,5 +7,6 @@ namespace VirtualAgentAssessment.Logic.Interfaces
     {
         List<AccountDto> GetAccountsFromPersonCode(int personCode);
         void SaveAccount(AccountDto accountDto);
+        AccountDto GetAccountsFromCode(int code);
     }
 }

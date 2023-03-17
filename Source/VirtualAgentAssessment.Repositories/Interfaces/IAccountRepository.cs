@@ -8,5 +8,6 @@ namespace VirtualAgentAssessment.Repositories.Interfaces
         IEnumerable<Account> GetAccountsForPerson(int personCode);
         Account GetAccountForAccountNumber(string accountNumber);
         void SaveAccount(Account account);
+        Account GetAccountForCode(int code);
     }
 }
