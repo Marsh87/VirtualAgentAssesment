@@ -46,7 +46,7 @@ namespace VirtualAgentAssessment.Controllers
         public ActionResult Create(int accountCode)
         {
             var model = new TransactionViewModel();
-            model.transaction_date = _dateTimeProvider.GetDateTimeNow();
+            model.transaction_date = _dateTimeProvider.GetDateTimeToday();
             model.account_code = accountCode;
             return View("CreateTransaction",model);
         }

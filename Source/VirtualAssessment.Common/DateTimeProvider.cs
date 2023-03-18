@@ -9,5 +9,10 @@ namespace VirtualAssessment.Common
         {
             return DateTime.Now;
         }
+
+        public DateTime GetDateTimeToday()
+        {
+            return DateTime.Today;
+        }
     }
 }
