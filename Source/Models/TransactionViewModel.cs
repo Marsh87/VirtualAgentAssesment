@@ -14,7 +14,6 @@ namespace VirtualAgentAssessment.Models
         [Required]
         [DisplayName("Transaction Date")]
         public DateTime transaction_date { get; set; }
-        [Required]
         [DisplayName("Capture Date")]
         public DateTime capture_date { get; set; }
         [Required]

@@ -13,6 +13,8 @@ using VirtualAgentAssessment.Models;
 using VirtualAgentAssessment.Repositories.Interfaces;
 using VirtualAgentAssessment.Repositories.Repositories;
 using VirtualAgentAssessment.Validators;
+using VirtualAssessment.Common;
+using VirtualAssessment.Common.Interface;
 
 namespace VirtualAgentAssessment
 {
@@ -37,6 +39,7 @@ namespace VirtualAgentAssessment
             container.Register<IValidator<AccountViewModel>,CreateAccountValidator>();
             container.Register<IValidator<CloseAccountViewModel>,CloseAccountValidator>();
             container.Register<IValidator<EditAccountViewModel>,EditAccountValidator>();
+            container.Register<IDateTimeProvider,DateTimeProvider>();
             container.RegisterMvcControllers(Assembly.GetExecutingAssembly());
             container.RegisterMvcIntegratedFilterProvider();
             container.Verify();

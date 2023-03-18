@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using VirtualAgentAssessment.Models;
 
 namespace VirtualAgentAssessment.Controllers
 {
@@ -17,12 +18,12 @@ namespace VirtualAgentAssessment.Controllers
         // GET: Transaction/Create
         public ActionResult Create()
         {
-            return View();
+            return View("CreateTransaction");
         }
 
         // POST: Transaction/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(TransactionViewModel transactionViewModel)
         {
             try
             {
@@ -37,7 +38,7 @@ namespace VirtualAgentAssessment.Controllers
         }
 
         // GET: Transaction/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult Edit(int code)
         {
             return View();
         }

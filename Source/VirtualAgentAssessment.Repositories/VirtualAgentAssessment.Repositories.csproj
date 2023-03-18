@@ -48,12 +48,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\IAccountRepository.cs" />
     <Compile Include="Interfaces\IPersonRepository.cs" />
+    <Compile Include="Interfaces\ITransactionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\AccountRepository.cs" />
     <Compile Include="Repositories\PersonRepository.cs" />
+    <Compile Include="Repositories\TransactionRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -63,6 +64,10 @@
     <ProjectReference Include="..\VirtualAgentAssessment.Domain\VirtualAgentAssessment.Domain.csproj">
       <Project>{E4E97E50-BFC0-443E-8755-E74501308347}</Project>
       <Name>VirtualAgentAssessment.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VirtualAssessment.Common\VirtualAssessment.Common.csproj">
+      <Project>{d952aaa2-9f2d-46db-acb8-8646e808e025}</Project>
+      <Name>VirtualAssessment.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

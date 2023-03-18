@@ -42,15 +42,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Interfaces\IAccountService.cs" />
     <Compile Include="Interfaces\IPersonService.cs" />
+    <Compile Include="Interfaces\ITransactionService.cs" />
     <Compile Include="Models\AccountDto.cs" />
     <Compile Include="Models\PersonDto.cs" />
     <Compile Include="Models\TransactionDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\AccountService.cs" />
     <Compile Include="Services\PersonService.cs" />
+    <Compile Include="Services\TransactionServices.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VirtualAgentAssessment.Domain\VirtualAgentAssessment.Domain.csproj">

@@ -288,6 +288,10 @@
       <Project>{655d1080-d0d9-4ee8-b1ba-edd5b9806272}</Project>
       <Name>VirtualAgentAssessment.Repositories</Name>
     </ProjectReference>
+    <ProjectReference Include="VirtualAssessment.Common\VirtualAssessment.Common.csproj">
+      <Project>{d952aaa2-9f2d-46db-acb8-8646e808e025}</Project>
+      <Name>VirtualAssessment.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
