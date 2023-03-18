@@ -178,6 +178,7 @@
     <Compile Include="Validators\CreatePersonValidator.cs" />
     <Compile Include="Validators\EditAccountValidator.cs" />
     <Compile Include="Validators\EditPersonValidator.cs" />
+    <Compile Include="Validators\TransactionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />

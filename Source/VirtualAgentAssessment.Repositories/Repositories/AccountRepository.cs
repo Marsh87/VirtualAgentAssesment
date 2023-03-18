@@ -52,5 +52,12 @@ namespace VirtualAgentAssessment.Repositories.Repositories
             if (account != null) account.account_number = accountNumber;
             _virtualAgentContext.SaveChanges();
         }
+
+        public void UpdateOutstandingBalance(int code, decimal balance)
+        {
+            var account = _virtualAgentContext.Accounts.FirstOrDefault(x => x.code == code);
+            if (account != null) account.outstanding_balance = balance;
+            _virtualAgentContext.SaveChanges();        
+        }
     }
 }

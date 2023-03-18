@@ -1,4 +1,5 @@
-﻿@model VirtualAgentAssessment.Models.TransactionViewModel
+﻿@using System.Globalization
+@model VirtualAgentAssessment.Models.TransactionViewModel
 
 
 @using (Html.BeginForm()) 
@@ -20,7 +21,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.amount, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.amount, new { htmlAttributes = new { @class = "form-control" } })
+                <input type="text" class="form-control only-numeric" name="amount" value="@Model.amount.ToString("0.00", CultureInfo.InvariantCulture)"/>
                 @Html.ValidationMessageFor(model => model.amount, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -43,9 +44,15 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to Account", "Edit","Account",new{ code = Model.account_code},null)
 </div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript">
+      $(".only-numeric").bind("keypress",function (e) {
+         var keyCode = e.which ? e.which: e.keyCode;
+        return (keyCode >=48 && keyCode <=57)|| keyCode === 110 || keyCode === 190|| keyCode === 46 || keyCode === 45;
+      });
+    </script>
 }

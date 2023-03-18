@@ -3,4 +3,5 @@ Steps to Run
 2. Run in InteractiveMVC_Tables_With_Data.sql against VirtualAgent database created in step 1
 4. Restore Nuget Packages
 5. Change Connection string in Web.config if needed
-6. Debug new instance VirtualAgentAssessment
+6. Make sure culture setting on environment for numbers is set to "."
+7. Debug new instance VirtualAgentAssessment

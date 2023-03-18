@@ -6,12 +6,12 @@ using VirtualAgentAssessment.Repositories.Interfaces;
 
 namespace VirtualAgentAssessment.Logic.Services
 {
-    public class TransactionServices: ITransactionService
+    public class TransactionService: ITransactionService
     {
         private readonly ITransactionRepository _transactionRepository;
         private readonly IMapper _mapper;
 
-        public TransactionServices(ITransactionRepository transactionRepository, IMapper mapper)
+        public TransactionService(ITransactionRepository transactionRepository, IMapper mapper)
         {
             _transactionRepository = transactionRepository;
             _mapper = mapper;

@@ -11,5 +11,6 @@ namespace VirtualAgentAssessment.Repositories.Interfaces
         Account GetAccountFromCode(int code);
         void SetAccountStatus(int code, bool status);
         void UpdateAccountNumber(int code, string accountNumber);
+        void UpdateOutstandingBalance(int code, decimal balance);
     }
 }

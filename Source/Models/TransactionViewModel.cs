@@ -15,8 +15,10 @@ namespace VirtualAgentAssessment.Models
         public int account_code {  get; set; }
         [Required]
         [DisplayName("Transaction Date")]
+        [DataType(DataType.DateTime)]
         public DateTime transaction_date { get; set; }
         [DisplayName("Capture Date")]
+        [DataType(DataType.DateTime)]
         public DateTime capture_date { get; set; }
         [Required]
         [DisplayName("Amount")]

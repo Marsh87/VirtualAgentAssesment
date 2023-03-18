@@ -49,5 +49,13 @@ namespace VirtualAgentAssessment.Logic.Services
         {
             _accountRepository.UpdateAccountNumber(code, accountNumber);
         }
+
+        public void ReCalculateAccountBalance(int code)
+        {
+            var account = _accountRepository.GetAccountFromCode(code);
+            var balance = account.Transactions.Select(x => x.amount).Sum();
+            _accountRepository.UpdateOutstandingBalance(code, balance);
+
+        }
     }
 }
