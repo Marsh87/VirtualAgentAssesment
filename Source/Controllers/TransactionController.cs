@@ -4,11 +4,19 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using VirtualAgentAssessment.Models;
+using VirtualAssessment.Common.Interface;
 
 namespace VirtualAgentAssessment.Controllers
 {
     public class TransactionController : Controller
     {
+        private IDateTimeProvider _dateTimeProvider;
+
+        public TransactionController(IDateTimeProvider dateTimeProvider)
+        {
+            _dateTimeProvider = dateTimeProvider;
+        }
+
         // GET: Transaction
         public ActionResult Index()
         {
@@ -16,8 +24,11 @@ namespace VirtualAgentAssessment.Controllers
         }
 
         // GET: Transaction/Create
-        public ActionResult Create()
+        public ActionResult Create(int accountCode)
         {
+            var model = new TransactionViewModel();
+            model.transaction_date = _dateTimeProvider.GetDateTimeNow();
+            model.account_code = accountCode;
             return View("CreateTransaction");
         }
 

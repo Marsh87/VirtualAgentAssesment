@@ -12,6 +12,7 @@ namespace VirtualAgentAssessment.Domain.Models
     {
         [Key]
         public int code {  get; set; }
+        public int account_code {  get; set; }
         public DateTime transaction_date { get; set; }
         public DateTime capture_date { get; set;}
         public decimal amount { get; set; }

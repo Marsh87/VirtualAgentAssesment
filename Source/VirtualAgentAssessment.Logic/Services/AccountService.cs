@@ -3,6 +3,7 @@ using System.Linq;
 using AutoMapper;
 using VirtualAgentAssessment.Domain.Models;
 using VirtualAgentAssessment.Logic.Interfaces;
+using VirtualAgentAssessment.Logic.Models;
 using VirtualAgentAssessment.Repositories.Interfaces;
 
 namespace VirtualAgentAssessment.Logic.Services

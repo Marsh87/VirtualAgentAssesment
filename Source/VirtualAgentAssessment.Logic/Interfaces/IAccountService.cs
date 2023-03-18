@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using VirtualAgentAssessment.Domain.Models;
+using VirtualAgentAssessment.Logic.Models;
 
 namespace VirtualAgentAssessment.Logic.Interfaces
 {
