@@ -13,13 +13,12 @@ namespace VirtualAgentAssessment.Models
         {
             Accounts = new List<AccountViewModel>();
         }
+        
         [Required]
         public int code { get; set; }
-        [Required]
         [MaxLength(50)]
         [DisplayName("Name")]
         public string name { get; set; }
-        [Required]
         [MaxLength(50)]
         [DisplayName("Surname")]
         public string surname { get; set; }

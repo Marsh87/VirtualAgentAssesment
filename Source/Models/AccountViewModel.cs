@@ -15,6 +15,7 @@ namespace VirtualAgentAssessment.Models
         }
         [Required]
         public int code { get; set; }
+        [Required]
         public int person_code { get; set; }
         [DisplayName("Account Number")]
         [Required]
