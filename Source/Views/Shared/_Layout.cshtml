@@ -12,7 +12,9 @@
 <body>
     <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-dark">
         <div class="container">
-            @*@Html.ImageActionLink("Link Display Text","Index","Home",null,null,"~/Content/Images/logo.png")*@
+            <a href="@Url.Action("Index", "Home")" class="navbar-brand">
+                <img src="~/Content/Images/logo_52x60.png" title="title" alt="additional title" />
+            </a>
             @Html.ActionLink("Virtual Agent Assessment", "Index", "Home", new { area = "" }, new { @class = "navbar-brand banner-text" })
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" title="Toggle navigation" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">
