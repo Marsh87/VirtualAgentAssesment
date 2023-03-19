@@ -15,12 +15,21 @@
 @using (Html.BeginForm("Index", "Person", FormMethod.Get))
 {   
         <div class="row">
-            <div class="col-md-12">
-                Find by  @Html.DropDownList("SearchType", ViewBag.SearchCategoryList as SelectList, new { @class = "" }): @Html.TextBox("SearchString", ViewBag.SearchString as string)
+            <div class="col-md-1">
+                Find by :
+            </div>  
+            <div class="col-md-3">
+                @Html.DropDownList("SearchType", ViewBag.SearchCategoryList as SelectList, new { @class = "form-control" })
+            </div>     
+            <div class="col-md-3">
+                @Html.TextBox("SearchString", ViewBag.SearchString as string ,new { @class = "form-control" })
+            </div>
+            <div class="col-md-3">
                 <input type="submit" value="Search" />
-            </div>        
+            </div>
         </div>
 }
+<br/>
 <table class="table">
     <tr>
         <th>Name</th>

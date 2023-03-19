@@ -42,6 +42,7 @@ namespace VirtualAgentAssessment.Controllers
         {
             if (searchString != null)
             {
+                searchString = searchString.Replace("\t", " ").Trim();
                 ViewBag.SearchString = searchString;
             }
 

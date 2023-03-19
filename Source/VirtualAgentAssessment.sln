@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualAgentAssessment.Logi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualAssessment.Common", "VirtualAssessment.Common\VirtualAssessment.Common.csproj", "{D952AAA2-9F2D-46DB-ACB8-8646E808E025}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualAgentAssessment.Tests", "VirtualAgentAssessment.Tests\VirtualAgentAssessment.Tests.csproj", "{1F431A6D-587B-4A94-8887-EF511AEEB4ED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{D952AAA2-9F2D-46DB-ACB8-8646E808E025}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D952AAA2-9F2D-46DB-ACB8-8646E808E025}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D952AAA2-9F2D-46DB-ACB8-8646E808E025}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F431A6D-587B-4A94-8887-EF511AEEB4ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F431A6D-587B-4A94-8887-EF511AEEB4ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F431A6D-587B-4A94-8887-EF511AEEB4ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F431A6D-587B-4A94-8887-EF511AEEB4ED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
